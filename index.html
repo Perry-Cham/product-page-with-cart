@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="styles.css" type="text/css" media="all" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Product list with cart</title>
+  
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+    
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Desserts</h1>
+    <div>
+      <section class="food-cards">
+     <article class="food-card">
+    <div class="card-image">
+      <img alt="" src="assets/images/image-waffle-mobile.jpg"> 
+      <button class="cart-button">
+        <i class="cart-icon"></i> Add To
+        Cart</button>
+        </div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Waffle</p>
+      <h2 class="product">Waffle with Berries</h2>
+      <p class="price">$6.50</p>
+    </div>
+    
+  </article>
+  
+  
+  <article class="food-card">
+    <div class="card-image">
+      <img src="assets/images/image-creme-brulee-mobile.jpg" alt="">
+      <button class="cart-button">
+        <i  class="cart-icon"></i> Add To Cart</button>
+    </div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Crème Brûlée</p>
+      <h2 class="product">Vanilla Bean Crème Brûlée</h2>
+      <p class="price">$7.00</p>
+    </div>
+    
+  </article>
+  
+  
+  
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-macaron-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"></i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Macaron</p>
+      <h2 class="product">Macaron Mix of Five</h2>
+      <p class="price">$8.00</p>
+    </div>
+    
+  </article>
+  
+  
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-tiramisu-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"> </i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Tiramisu</p>
+      <h2 class="product">Classic Tiramisu</h2>
+      <p class="price">$5.50</p>
+    </div>
+    
+  </article>
+  
+  
+  
+  
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-baklava-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"> </i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Baklava</p>
+      <h2 class="product">Pistachio Baklava</h2>
+      <p class="price">$4.00</p>
+    </div>
+    
+  </article>
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-meringue-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"> </i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Pie</p>
+      <h2 class="product">Lemon Meringue Pie</h2>
+      <p class="price">$5.00</p>
+    </div>
+    
+  </article>
+  
+  
+  
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-cake-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"> </i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Cake</p>
+      <h2 class="product">Red Velvet Cake</h2>
+      <p class="price">$4.50</p>
+    </div>
+    
+  </article>
+  
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-brownie-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"> </i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Brownie</p>
+      <h2 class="product">Salted Caramel Brownie</h2>
+      <p class="price">$4.50</p>
+    </div>
+    
+  </article>
+  
+  
+  <article class="food-card">
+    <div class="card-image"><img class="card-image-img" src="assets/images/image-panna-cotta-mobile.jpg" alt=""> <button class="cart-button"><i class="cart-icon"> </i> Add To
+        Cart</button></div>
+    <div class="product-info-wrapper">
+      <p class="type-of-food">Panna Cotta</p>
+      <h2 class="product">Vanilla Panna Cotta</h2>
+      <p class="price">$6.50</p>
+    </div>
+    
+  </article>
+  
+  </section>
+ 
+ <section class="cart-section">
+     <div class="cart">
+    <p id="item-display">Your Cart (<strong id="strong">0</strong>)</p>
+    <p id="no-item-message">Your added items will appear here</p>
+    <div class="cart-image">
+    </div>
+    <div class="cart-list">
+    </div>
+    <div class="cart-total">
+      <h3>Order Total:</h3> <p>$0</p>
+    </div>
+    <div class="lowerCartWrapper">
+       <div class="carbon-neutral-delivery">
+      <i class="carbon-i"></i> <p>This is a carbon neutral delivery</p>
+    </div>
+       
+      <button class="order-btn" type="button">
+        Confirm Order
+      </button>
+    </div>
+   
+  </div>
+  
+ </section>
+      
+    </div>
+      
+
+  
+  </main>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script src="index.js" type="module" charset="utf-8"></script>
+</body>
+
+</html>
