@@ -14,7 +14,7 @@ const cartImage = document.querySelector(".cart-image");
 
 
 async function Get() {
-  const response = await fetch("http://localhost:8000/data.json");
+  const response = await fetch("https://perryspastries.netlify.app/data.json");
   const data = await response.json();
 
   return data;
