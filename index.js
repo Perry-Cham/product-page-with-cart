@@ -10,18 +10,20 @@ const itemDisplay = document.querySelector("#item-display");
 const noItemMessage = document.querySelector("#no-item-message");
 const cartImage = document.querySelector(".cart-image");
 
+
+
+
 async function Get() {
-  const response = await fetch('https://perryspastries.netlify.app/data.json');
+  const response = await fetch("http://localhost:8000/data.json");
   const data = await response.json();
+
   return data;
 }
 
 async function main() {
-  const products = await Get();
+  products = await Get();
   startUp(products);
-
 }
-
 main();
 
 
@@ -45,8 +47,8 @@ function setUp() {
 }
 function buttonLogic(products) {
 
-  cartButtons.forEach((cartButton) => {
 
+  cartButtons.forEach((cartButton) => {
     //iterate through the add to cart buttons
 
     cartButton.addEventListener("click", (e) => {
@@ -77,7 +79,7 @@ function buttonLogic(products) {
               qty))
           actionButtons[1].addEventListener("click", () => decrement(product, qty))
           cartLogic(product, products);
-          console.log(products)
+
 
           //Loop through the card images and add the selected class to the cardImage div with an id = the buttonId
           foodCards.forEach((card) => {
@@ -103,6 +105,7 @@ function cartLogic(product, products) {
     }
   }
 
+//Render the items in the cart
   cart.forEach(child => {
     const tag = document.createElement('div')
     const price = child.price;
@@ -119,8 +122,7 @@ function cartLogic(product, products) {
         `;
     const removeIconI = tag.querySelector(".remove-icon")
     const removeIcon = tag.querySelector(".remove-icon img")
-    removeIconI.addEventListener("click", (e) => removeItem(e.target, products))
-    removeIcon.addEventListener("click", (e) => removeItem(e.target, products))
+    tag.addEventListener("click", (e) => removeItem(e, products))
 
     cartList.appendChild(tag)
     cartTotal += child.quantity * child.price;
@@ -128,7 +130,7 @@ function cartLogic(product, products) {
 
   itemDisplay.innerHTML = `Your Cart (${cart.length})`;
 
-
+//Cart area styling for when they arent sny items inside
   if (cart.length > 0) {
     noItemMessage.style.display = "none";
     cartImage.style.display = "none";
@@ -143,7 +145,7 @@ function cartLogic(product, products) {
 
   document.querySelector(".cart-total p").innerHTML = `$${(cartTotal).toFixed(2)}`;
 
-
+//Order Button
   const orderBtn = document.querySelector(".order-btn")
   orderBtn.addEventListener("click", () => {
     confirmedOrderLogic(cart)
@@ -153,17 +155,28 @@ function cartLogic(product, products) {
 function confirmedOrderLogic(cart) {
   const orderModal = new OrderModal();
   orderModal.create();
-  orderModal.render(cart);
-
+  orderModal.render(cart)
+  orderModal.newOrderBtn.addEventListener("click", () =>
+    orderModal.handleClick(clear))
 }
 
-function removeItem(e, products) {
-  let compare = e.getAttribute("data-id");
+
+function removeItem(e) {
+  let compare;
+  console.log(products)
+  if (!e.target.getAttribute("data-id")) {
+    compare = e.target.parentNode.getAttribute("data-id")
+  } else compare = e.target.getAttribute("data-id");
+
+
   cart.forEach((child, index) => {
     const yes = child.dataId == compare;
     if (yes) {
       child.delete = true;
       cart = cart.filter((product) => product.delete != true)
+      const found = products.find((child) => child.dataId == compare)
+      found.quantity = 0;
+
 
       foodCards.forEach((div) => {
         if (div.getAttribute("data-id") == compare) {
@@ -177,9 +190,10 @@ function removeItem(e, products) {
       cartLogic()
     }
   })
-  // const product = products.find(p => p.dataId == compare)
-  console.log(products)
+
 }
+
+
 function increment(product, tag) {
   product.quantity++;
   tag.innerHTML = product.quantity;
@@ -187,6 +201,28 @@ function increment(product, tag) {
 }
 function decrement(product, tag) {
   product.quantity--;
+  if (product.quantity < 0) product.quantity = 0;
   tag.innerHTML = product.quantity;
   cartLogic(product)
+}
+
+function clear() {
+  console.log(cardImageDiv)
+  cardImageDiv.forEach((child) => {
+    child.classList.remove("selected")
+    child.querySelector(".cart-button.cart-add").classList.remove("active")
+    
+    
+    child.querySelector(".cart-button.cart-add .subtract").removeEventListener("click", () => {
+      decrement()
+    });
+    child.querySelector(".cart-button.cart-add .add").removeEventListener("click", () => {
+      increment()
+    });
+  })
+  cart = [];
+  products.forEach((child) => {
+    child.quantity = 0;
+  })
+  cartLogic();
 }

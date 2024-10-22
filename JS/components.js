@@ -120,7 +120,10 @@ export class OrderModal {
       document.body.appendChild(wrapper)
     }
   }
-  handleClick() {
-    document.body.removeChild(this.body)
+  handleClick(fun) {
+    const wrapper = document.querySelector(".modal-wrapper")
+    document.body.removeChild(wrapper)
+    fun();
   }
+
 }
